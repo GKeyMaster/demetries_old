@@ -1,0 +1,40 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+			
+			<h2>Factures</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Factura</th>
+						<th>Data Fac</th>
+						<th>Client</th>
+						<th>CIF</th>
+						<th>DireccioF</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in facturaTots%}
+					<tr>
+						<td>{{i.numFactura}}</td>
+						<td>{{i.dataFactura}}</td>
+						<td>{{i.nomClient}}</td>
+						<td>{{i.cifClient}}</td>
+						<td>{{i.direccioF}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/ComandaSelect?idComanda={{i.idComanda}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+
+
+
+
+{% include "footer.html" %}

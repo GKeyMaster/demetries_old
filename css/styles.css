@@ -1,0 +1,283 @@
+body {
+	font-family: 'PT Sans', sans-serif;
+}
+
+th {
+	font-weight: bold;
+}
+
+.navbar-brand {
+	padding: 0px;
+}
+
+.navbar-brand>img {
+	height: 100%;
+	padding: 0px;
+	width: auto;
+}
+
+body {
+	font-family: 'PT Sans', sans-serif;
+}
+
+.enTeteDePage .navbar-brand {
+	height: 80px;
+}
+
+.enTeteDePage .nav>li>a {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.enTeteDePage .navbar-toggle {
+	padding: 10px;
+	margin: 25px 15px 25px 0;
+}
+
+/*Cambio forzado del color de la barra de navegación*/
+.navbar-inverse {
+	background-color: #000000;
+	border-color: #000000;
+}
+/*Color de la letra*/
+.navbar-inverse .navbar-nav>li>a {
+	color: #ffffff;
+}
+
+/* Opción de la barra seleccionada*/
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover
+	{
+	color: #DCDCDC;
+	background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
+	.navbar-inverse .navbar-nav>.open>a:hover {
+	color: #DCDCDC;
+	background-color: #000000;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus,
+	.navbar-inverse .navbar-nav>.active>a:hover {
+	color: #DCDCDC;
+	background-color: #000000;
+}
+
+/* Botones de acceso */
+.btn-primary {
+	color: #808080;
+	background-color: #ffffff;
+	border-color: #808080;
+}
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary
+	{
+	color: #fff;
+	background-color: #808080;
+	border-color: #808080;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+	color: #fff;
+	background-color: #000000;
+	border-color: #000000;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #080808;
+	border-color: #080808;
+}
+/* Modif. del color de fondo*/
+#modif-jumbo-1 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	color: inherit;
+	background-color: #ffffff;
+}
+
+#footer {
+	height: 5px;
+	color: #ffffff;
+}
+
+
+#footer-impresion {
+	height: 25px;
+	
+	background: transparent;
+}
+@media ( max-height :800px) {
+	footer {
+		display: none;
+	}
+}
+/* Bouton Ajout / Suppression/ Modification */
+#button-ajouter {
+	color: #fff;
+	background-color: #2E8B57;
+	border-color: #2E8B57;
+	margin-bottom: 30px;
+}
+
+#button-modifier {
+	color: #fff;
+	background-color: #FFA07A;
+	border-color: #FFA07A;
+	margin-bottom: 30px;
+}
+
+#button-supprimer {
+	color: #fff;
+	background-color: #FF4500;
+	border-color: #FF4500;
+	margin-bottom: 30px;
+}
+
+#button-enregistrer {
+	color: #fff;
+	background-color: #000000;
+	border-color: #000000;
+	margin-bottom: 30px;
+}
+
+#color1 {
+	color: #0033cc;
+}
+
+#color2 {
+	color: #669900;
+}
+
+#color3 {
+	color: #ff0000;
+}
+
+#color4 {
+	color: #000000;
+}
+
+/*Marca en calendario*/
+#color5 {              
+	color: #0000ff;
+}
+
+.btn btn-link {
+	text-decoration: underline;
+}
+
+@import "compass/css3";
+
+.tbl-accordion {
+	margin: 0 auto;
+	width: 900px;
+	border: 1px solid #d9d9d9;
+	thead
+	{
+	background
+	:
+	#d9d9d9;
+}
+
+//
+@import "compass/css3";
+
+.collapse-custom {
+
+  .navbar-tool {
+    display: none; 
+  }
+
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    cursor: pointer;
+    border-bottom: none;
+
+    .btn-xs {
+      font-size: inherit;
+    }
+    li ul {
+      list-style-type: none;
+      padding-left: 15px;
+    }
+
+  }
+
+  .navbar:last-of-type {
+    border-bottom: 1px solid #e7e7e7;
+
+  }
+
+  .navbar-heading {
+    background-color: #3276b1;
+    cursor: default;
+    font-weight: bold;
+    font-size: 16px;
+    li {  
+      padding: 10px 0 10px 0;  
+    }
+    li a {
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .navbar-nav {
+    .one {
+      min-width: 120px;
+    }
+    .two {
+      min-width: 300px;
+    } 
+    .three {
+      min-width: 75px;
+    }
+    .four {
+      min-width: 110px;
+    } 
+    .five {
+      width: 20px; 
+    }
+  }
+
+  .collapse {
+    background-color: #fff; 
+  }
+
+  .collapse-open {
+    background-color: #f5f5f5; 
+  }
+
+
+}
+
+#cabecera{
+	background-color: #000000
+}
+
+.visible-print {
+    display: block !important;
+}
+
+.hidden-print {
+    display: none !important;
+}
+
+#Index{
+	margin-left: 40px;
+	margin-right:40px;
+}
+
+@media print {
+    .bg-danger {
+      background-color: #f2dede !important;
+    }
+
+    .table td {
+      background-color: transparent !important;
+    }
+  }

@@ -1,0 +1,86 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idVarietat -2%}
+		    <h2>Crear varietat nova</h2>	
+			<form action="/VarietatCrea" method="post">
+
+			<div class="form-group">
+				<label>Varietat: </label> <input type="text"
+				class="form-control" name="varietat">
+			</div>
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idVarietat -1%}
+			<form action="/VarietatNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Varietat</button>
+			</form>
+			<br>
+			
+			<h2>Varietats
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Varietat</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in varietatTots%}
+					<tr>
+						<td>{{i.varietat}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/VarietatSelect?idVarietat={{i.idVarietat}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Varietat</h2>	
+				<form action="/VarietatEdita" method="get">
+				
+						<div class="form-group">
+							<label>Varietat: </label> <input type="text"
+							class="form-control" name="varietat" value="{{varietatSelect.varietat}}">
+						</div>						
+								
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+								<input type="text" name="idVarietat" value="{{varietatSelect.idVarietat}}" style="visibility: hidden" />
+						</div>
+					
+				</form>
+				<br>
+				<div>
+				<form action="/VarietatTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Varietats</button>
+				</form>
+				<br><br><br>
+				<form action="/VarietatElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Varietat</button>
+					<input type="text" name="idVarietat" value="{{varietatSelect.idVarietat}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

@@ -1,0 +1,157 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+	
+	{%ifequal idTreballador -1%} <!-- Sense treballador seleccionat -->
+			<h2>Usuaris</h2>
+			<div class="container">
+				<div class="row" id="modif-row-1">
+					<div class="col-lg-2">
+						<p>
+							<a class="btn btn-lg btn-primary"
+								href="/UsuariNou" role="button">Crear Usuari</a>
+						</p>
+					</div>
+				</div>
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Avatar</th>
+						<th>Nom</th>
+						<th>mail</th>
+						<th>enActiu</th>
+						<th>nivell</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in treballadorTots%}
+					<tr>
+						<td>{{i.claveTreballador}}</td>
+						<td>{{i.nomTreballador}}</td>
+						<td>{{i.mailTreballador}}</td>
+						{%ifequal i.enActiu 0%}
+							<td>no</td>
+						{%else%}
+							<td>si</td>
+						{%endifequal%}
+						{%ifequal i.nivell 0%}
+							<td>no te acces</td>
+						{%else%}
+							{%ifequal i.nivell 1%}
+								<td>usuari</td>
+							{%else%}
+								<td>administrador</td>
+							{%endifequal%}								
+						{%endifequal%}
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+							href="/UsuariSelect?idTreballador={{i.idTreballador}}"> <span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			
+		</div>
+	{%else%}
+
+		{%ifequal idTreballador -2%} <!-- Preparat per a treballador nou -->
+			<div class="container">
+
+			<form action="/UsuariCrea" method="post">
+
+			<div class="form-group">
+				<label>Avatar: </label> <input type="text"
+				class="form-control" name="claveTreballador" placeholder="Avatar">
+			</div>
+			<div class="form-group">
+				<label>Nom: </label> <input type="text"
+				class="form-control" name="nomTreballador" placeholder="Nom complet">
+			</div>
+			<div class="form-group">
+				<label>Mail: </label> <input type="text"
+				class="form-control" name="mailTreballador" placeholder="mail d'acces a la bd">
+			</div>	
+			<div class="form-group">
+				<label>En Actiu:</label> 
+				<select name="enActiu" class="form-control">
+					<option value=0>no</option>
+					<option value=1>si</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Nivell:</label> 
+				<select name="nivell" class="form-control">
+					<option value=0>no te acces</option>
+					<option value=1>usuari</option>
+					<option value=2>administrador</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-lg btn-primary" onclick="window.location.href='/UsuariCrea'" >Crea Usuari</button>
+			</form>
+
+			</div>
+		{%else%} <!-- Treballador select -->
+			<div class="container">
+
+				<form action="/UsuariEdita" method="post">
+
+					<div class="form-group">
+						<label>Avatar: </label> <input type="text"
+							class="form-control" name="claveTreballador" value="{{usuariSelect.claveTreballador}}">
+					</div>
+					<div class="form-group">
+						<label>Nom: </label> <input type="text"
+							class="form-control" name="nomTreballador" value="{{usuariSelect.nomTreballador}}">
+					</div>
+					<div class="form-group">
+						<label>Mail: </label> <input type="text"
+							class="form-control" name="mailTreballador" value="{{usuariSelect.mailTreballador}}">
+					</div>
+					<div class="form-group">
+						<label>En Actiu:</label> <select name="enActiu"
+							class="form-control">
+							{%ifequal usuariSelect.enActiu 0%}
+							<option value=0>no</option>
+							{%else%}
+							<option value=1>si</option>
+							{%endifequal%}
+							<option value=0>no</option>
+							<option value=1>si</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Nivell:</label> <select name="nivell"
+							class="form-control">
+							{%ifequal usuariSelect.nivell 0%}
+							<option value=0>no te acces</option>
+							{%else%}
+								{%ifequal usuariSelect.nivell 1%}
+								<option value=1>usuari</option>
+								{%else%}
+								<option value=2>administrador</option>
+								{%endifequal%}
+							{%endifequal%}
+							<option value=0>no te acces</option>
+							<option value=1>usuari</option>
+							<option value=2>administrador</option>
+						</select>
+					</div>
+
+
+					<button type="submit" class="btn btn-lg btn-primary">OK</button>
+					<div>
+					<input type="text" name="idTreballador" value="{{idTreballador}}" style="visibility: hidden" />
+					</div>
+				</form>
+
+			</div>		
+		
+		{%endifequal%}
+			
+	{%endifequal%}
+	
+
+{% include "footer.html" %}

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>demetries</title>
+
+<!-- Custom CSS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script> $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})</script>
+
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>-->
+<link href="css/styles.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>-->
+
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css'>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script>$('.selectpicker').selectpicker({
+                style: 'btn-default'
+            });</script>
+
+
+<script>
+//mouse over navbar
+$('.navbar').mouseover(function(event) {
+  $(this).find('.navbar-tool').show();
+});
+
+//mouse out of navbar
+$('.navbar').mouseout(function(event) {
+  $(this).find('.navbar-tool').hide();
+});
+
+//on close collapse
+$('.collapse').on('hidden.bs.collapse', function () {
+  var target = '#'+$(this).attr('data-parent');
+  $(target).removeClass('collapse-open');
+});
+
+//on open collapse
+$('.collapse').on('shown.bs.collapse', function () {
+  var target = '#'+$(this).attr('data-parent');
+  $(target).addClass('collapse-open');
+})
+
+</script>
+
+
+	     <link rel="stylesheet" href="css/jquery.ui.all.css">
+	     <script src="js/jquery-1.4.4.js"></script>
+	     <script src="js/jquery.ui.core.js"></script>
+	     <script src="js/jquery.ui.widget.js"></script>
+	     <script src="js/jquery.ui.datepicker.js"></script>
+
+	     <link rel="stylesheet" href="css/demos.css">
+	     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+	     
+	     <script>
+	     $(function() {
+		     $( "#datepicker1" ).datepicker();
+		     $( "#datepicker2" ).datepicker();
+		     $( "#datepicker3" ).datepicker();
+		     $( "#datepicker4" ).datepicker();
+		     $( "#datepicker5" ).datepicker();
+		     $( "#datepicker6" ).datepicker();
+		     $( "#datepicker7" ).datepicker();
+		     $( "#datepicker8" ).datepicker();
+		     $( "#datepicker9" ).datepicker();
+		     $( "#datepicker10" ).datepicker();
+		     $( "#datepicker11" ).datepicker();
+		     $( "#datepicker12" ).datepicker();
+		     $( "#datepicker13" ).datepicker();
+		     $( "#datepicker14" ).datepicker();
+		     $( "#datepicker15" ).datepicker();
+		     $( "#datepicker16" ).datepicker();
+		     $( "#datepicker17" ).datepicker();
+		     $( "#datepicker18" ).datepicker();		     		     		     
+	     });
+	     </script>
+
+
+        
+        
+
+
+</head>
+
+<body onload="sortlist()">
+
+	<div class="enTeteDePage">
+		<nav class="navbar navbar-inverse navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar3">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand"><img
+						src="img/dem.jpg" height="2480" width="3508" alt="demetries">
+					</a>	
+				</div>
+				<div id="navbar3" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="/Index">Inici</a></li>
+						<li class="active"><a href="/ProducteTots">Productes</a></li>
+						<li class="active"><a href="/ClientTots">Clients</a></li>
+						<li class="active"><a href="/ComandaTots">Comandes</a></li>
+                        <li class="active"><a href="/SimplificadaTots">Simplificades</a></li>
+						<li class="active"><a href="/UsuariTots" style="font-size:40px"> {{treballadorSelect.claveTreballador}} </a></li>							
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+	</div>

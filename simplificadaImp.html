@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+            <head> <!-- titol en pestana -->  
+               <title>{{impSimplificada.factSimpli}}</title>
+               <style type="text/css">
+<!--
+.Estilo2 {
+	font-size: 10mm;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Estilo3 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; }
+.Estilo4 {
+	font-size: 4mm;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Estilo5 {font-size: 3mm; font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;}
+.Estilo6 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+-->
+               </style>
+        </head>
+        <head>
+		<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+        </head>
+        <body>
+            <img src="img/Logo.jpg" style="position: absolute; top: 10px; left: 500px" alt="" width="400" />
+ 
+			 
+            <div>
+			   <div align="left">
+			     <table style="position: absolute; top: 220px; left: 30px; width: 800px;">
+                   <tr>
+			         <td align="left" class="Estilo2" colspan="6">FACTURA SIMPLIFICADA</td>
+				   </tr>
+                   <tr>
+			         <td align="left" class="Estilo2" colspan="2">n&uacute;mero:</td>
+                     <td align="left" class="Estilo2" colspan="4">{{impSimplificada.factSimpli}}</td>
+				   </tr>
+                   <tr>
+			         <td align="left" class="Estilo2" colspan="2">fecha:</td>
+                     <td align="left" class="Estilo2" colspan="4">{{impSimplificada.data}}</td>
+				   </tr>
+                   <tr>
+			         <td align="left" class="Estilo2" colspan="6">DAMALIA FILLES SL</td>
+				   </tr>
+				   <tr>
+			         <td align="left" class="Estilo2" colspan="6">B72902273</td>
+				   </tr>
+				   <tr>
+			         <td align="left" class="Estilo2" colspan="6">Benassal a Villafranca Km 4,15 Benassal, Castell&oacute;</td>
+				   </tr>
+				   <tr>
+			         <td align="left" class="Estilo2" colspan="6">info@demetriotrufadebenassal.es</td>
+				   </tr>
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   {%ifequal impSimplificada.quantitat1 0%}
+                   {%else%}
+
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="6">{{impSimplificada.producte1}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2">{{impSimplificada.quantitat1}} x</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.preuP1}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.unitat1}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.total1}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.percent1}}</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalIva1}}</td>
+				   </tr>
+                   {%endifequal%}
+                   {%ifequal impSimplificada.quantitat2 0%}
+                   {%else%}
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="6">{{impSimplificada.producte2}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2">{{impSimplificada.quantitat2}} x</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.preuP2}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.unitat2}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.total2}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.percent2}}</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalIva2}}</td>
+				   </tr>
+                   {%endifequal%}
+                   {%ifequal impSimplificada.quantitat3 0%}
+                   {%else%}
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="6">{{impSimplificada.producte3}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2">{{impSimplificada.quantitat3}} x</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.preuP3}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.unitat3}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.total3}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.percent3}}</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalIva3}}</td>
+				   </tr>
+                   {%endifequal%}
+                   {%ifequal impSimplificada.quantitat4 0%}
+                   {%else%}
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="6">{{impSimplificada.producte4}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2">{{impSimplificada.quantitat4}} x</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.preuP4}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.unitat4}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.total4}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.percent4}}</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalIva4}}</td>
+				   </tr>
+                   {%endifequal%}
+                   {%ifequal impSimplificada.quantitat5 0%}
+                   {%else%}
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="6">{{impSimplificada.producte5}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2">{{impSimplificada.quantitat5}} x</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.preuP5}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.unitat5}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.total5}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.percent5}}</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalIva5}}</td>
+				   </tr>
+                   {%endifequal%}
+                   {%ifequal impSimplificada.quantitat6 0%}
+                   {%else%}
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="6">{{impSimplificada.producte6}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2">{{impSimplificada.quantitat6}} x</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.preuP6}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.unitat6}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.total6}}</td>
+                     <td align="left" class="Estilo2">{{impSimplificada.percent6}}</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalIva6}}</td>
+				   </tr>
+                   {%endifequal%}
+                   <tr>
+                     <td align="center" class="Estilo2" colspan="6">···</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="4"></td>
+                     <td align="left" class="Estilo2">bruto:</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalFS}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="4"></td>
+                     <td align="left" class="Estilo2">iva:</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.sumaIva}}</td>
+				   </tr>
+                   <tr>
+                     <td align="left" class="Estilo2" colspan="4"></td>
+                     <td align="left" class="Estilo2">total:</td>
+                     <td align="right" class="Estilo2">{{impSimplificada.totalFSIva}}</td>
+				   </tr>
+				   
+			       		 				 				 
+	             </table>
+		      </div>
+		</div>              
+			
+        </body>
+</html>

@@ -1,0 +1,176 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idProducte -2%}
+		    <h2>Crear producte nou</h2>	
+			<form action="/ProducteCrea" method="post">
+
+			<div class="form-group">
+				<label>Codi: </label> <input type="text"
+				class="form-control" name="codiProducte">
+			</div>
+			<div class="form-group">
+				<label>Producte: </label> <input type="text"
+				class="form-control" name="producte">
+			</div>
+			<div class="form-group">
+				<label>Preu Referència Públic: </label> <input type="text"
+				class="form-control" name="preuP">
+			</div>
+			<div class="form-group">
+				<label>Preu Referència Distribuidor: </label> <input type="text"
+				class="form-control" name="preuD">
+			</div>	
+			<div class="form-group">
+				<label>Unitat: </label> <input type="text"
+				class="form-control" name="unitat" placeholder="exemple: €/g">
+			</div>
+			<div class="form-group">
+						<label>TipoIva:</label> 
+						<select name="idTipoIva" class="form-control">
+							{%for i in tipoIvaTots%}
+							<option value={{i.idTipoIva}}>{{i.percent}}</option>
+							{%endfor%}
+						</select>
+					</div>
+            <div class="form-group">
+						<label>Producte de fira:</label> 
+							<select name="esFira" class="form-control">
+								<option value=0>no</option>
+								<option value=1>si</option>
+							</select>
+						</div>
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idProducte -1%}
+			<form action="/ProducteNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Producte</button>
+			</form>
+			<br>
+			
+			<h2>Productes
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Codi</th>
+						<th>Producte</th>
+						<th>Públic</th>
+						<th>Distrib</th>
+						<th>Unitat</th>
+						<th>Iva</th>
+                        <th>EsFira</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in producteTots%}
+					<tr>
+						<td>{{i.codiProducte}}</td>
+						<td>{{i.producte}}</td>
+						<td>{{i.preuP}}</td>
+						<td>{{i.preuD}}</td>
+						<td>{{i.unitat}}</td>
+                        <td>{{i.percent}}</td>
+                        {%ifequal i.esFira 1%}
+                        <td>si</td>
+                        {%else%}
+                        <td>no</td>
+                        {%endifequal%}
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/ProducteSelect?idProducte={{i.idProducte}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Producte</h2>	
+				<form action="/ProducteEdita" method="get">
+						<div class="form-group">
+							<label>Codi: </label> <input type="text"
+							class="form-control" name="codiProducte" value="{{producteSelect.codiProducte}}">
+						</div>
+						<div class="form-group">
+							<label>Producte: </label> <input type="text"
+							class="form-control" name="producte" value="{{producteSelect.producte}}">
+						</div>
+						<div class="form-group">
+							<label>Preu Referència Públic: </label> <input type="text"
+							class="form-control" name="preuP" value="{{producteSelect.preuP}}">
+						</div>
+						<div class="form-group">
+							<label>Preu Referència Distribuidor: </label> <input type="text"
+							class="form-control" name="preuD" value="{{producteSelect.preuD}}">
+						</div>	
+						<div class="form-group">
+							<label>Unitat: </label> <input type="text"
+							class="form-control" name="unitat" value="{{producteSelect.unitat}}">
+						</div>
+						<div class="form-group">
+									<label>TipoIva:</label> 
+									<select name="idTipoIva" class="form-control">
+			                             {%for i in tipoIvaTots%}
+			                                  {%ifequal i.idTipoIva producteSelect.idTipoIva%}
+			                                       <option value="{{i.idTipoIva}}">{{i.percent}}</option>
+			                                  {%endifequal%}
+			                             {%endfor%}
+										{%for i in tipoIvaTots%}
+										<option value={{i.idTipoIva}}>{{i.percent}}</option>
+										{%endfor%}
+									</select>
+						</div>								
+						
+                        <div class="form-group">
+                                <label>Producte de fira:</label> 
+                                    <select name="esFira"
+                                        class="form-control">
+                                        {%ifequal producteSelect.esFira 0%}
+                                        <option value=0>no</option>
+                                        <option value=1>si</option>
+                                        {%else%}
+                                        <option value=1>si</option>
+                                        <option value=0>no</option>
+                                        {%endifequal%}
+                                        
+                                    </select>	
+                        </div>
+                        <div> 
+                        <button type="submit" class="btn btn-lg btn-primary">OK</button>       
+                        <input type="text" name="idProducte" value="{{producteSelect.idProducte}}" style="visibility: hidden" />
+					    
+                        </div>  
+					
+				</form>
+				<br>
+				<div>
+				<form action="/ProducteTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Productes</button>
+				</form>
+				<br><br><br>
+				<form action="/ProducteElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Producte</button>
+					<input type="text" name="idProducte" value="{{producteSelect.idProducte}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

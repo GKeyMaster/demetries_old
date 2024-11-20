@@ -1,0 +1,25 @@
+#application: demetriesbd
+#version: 20181023t202708
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /css
+  static_dir: css
+- url: /img
+  static_dir: img
+- url: /js
+  static_dir: js
+- url: /.*
+  script: demetriesbd.app
+
+env_variables:
+    CLOUDSQL_CONNECTION_NAME: armoniclaofi:europe-west1:armonicbase
+    CLOUDSQL_USER: aromero
+    CLOUDSQL_PASSWORD: Khb116066
+    CLOUDSQL_DATABASE: demetries
+
+libraries:
+- name: MySQLdb
+  version: "latest"

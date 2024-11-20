@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+            <head> <!-- titol en pestana -->  
+               <title>fcompraImp</title>
+               <style type="text/css">
+<!--
+.Estilo2 {
+	font-size: 10mm;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.Estilo3 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; }
+.Estilo4 {
+	font-size: 4mm;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Estilo5 {font-size: 3mm; font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;}
+.Estilo6 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+-->
+               </style>
+        </head>
+        <head>
+		<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+        </head>
+        <body>
+              <a class="Estilo2" style="position: absolute; top: 23px; left: 300px"> FACTURA </a>
+
+              <a class="Estilo3" style="position: absolute; top: 330px; left: 30px"> DAMALIA FILLES SL</a>
+			  <a class="Estilo3" style="position: absolute; top: 355px; left: 30px"> B72902273 </a>
+				  <a class="Estilo3" style="position: absolute; top: 380px; left: 30px"> Benassal a Villafranca Km 4,15 </a>
+		           <a class="Estilo3" style="position: absolute; top: 405px; left: 30px"> 12160 Benassal, Castell&oacute; </a>
+		           <a class="Estilo3" style="position: absolute; top: 430px; left: 30px"> tel: 630 51 78 72 </a>
+
+                      
+              
+              
+			 
+            <div>
+			   <div align="left">
+			     <table style="position: absolute; top: 330px; left: 425px; width: 365px;">
+			       <tr>
+			         <td width="150" align="left" class="Estilo6">Emisor:</td>
+				   </tr>
+			       <p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{fcompraSelect.nomProductor}}</div></td>
+					  </tr></p>
+			       <p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{fcompraSelect.cifProductor}}</div></td>
+					</tr></p>
+			       <p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{fcompraSelect.direccioF}}</div></td>
+					   </tr></p>
+			       		 				 				 
+	             </table>
+		      </div>
+		</div>
+		<div>
+			   <table style="position: absolute; top: 150px; left: 425px; width: 250;">
+			     <tr>
+			    	<td width="100" align="left" class="Estilo6"> Factura: </td>
+					<td width="150" align="left" class="Estilo3"> {{fcompraSelect.numFCompra}}  </td>
+				 </tr>
+				 <tr>
+			    	<td width="100" align="left" class="Estilo6"> Fecha: </td>
+					<td width="150" align="left" class="Estilo3"> {{fcompraSelect.dataFCompra}} </td>
+				 </tr>
+		      </table>
+			   <div align="left"></div>
+		</div>
+			
+		    </div>
+
+		  
+		    <div>
+              <table style="position: absolute; top: 510px; left: 30px; width: 20cm; background-color: #C0C0C0; border-style:solid;border-color:#C0C0C0">
+		         <thead>
+					<tr>
+						<th class="Estilo4" align="left">producto</th>
+						<th class="Estilo4" align="right">&euro;/ud</th>
+						<th class="Estilo4" align="right">ud</th>
+						<th class="Estilo4" align="right">cant</th>
+						<th class="Estilo4" align="right">&euro;</th>
+						<th class="Estilo4" align="right">%iva</th>
+						<th class="Estilo4" align="right">total</th>
+					</tr>
+				</thead>
+				<tbody>
+                        <tr>
+                             <td width="400" class="Estilo4">{{fcompraSelect.producte1}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuUnitT1}}</td>			 
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.unitat1}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.quantitatT1}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuT1}}</td>
+							 <td width="80" align="right" class="Estilo4">12%</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuTotT1}}</td>							 
+                        </tr>
+                        <tr>
+                             <td width="400" class="Estilo4">{{fcompraSelect.producte2}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuUnitT2}}</td>			 
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.unitat2}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.quantitatT2}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuT2}}</td>
+							 <td width="80" align="right" class="Estilo4">12%</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuTotT2}}</td>							 
+                        </tr>
+
+                        <tr>
+                             <td width="400" class="Estilo4">{{fcompraSelect.producte3}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuUnitT3}}</td>			 
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.unitat3}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.quantitatT3}}</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuT3}}</td>
+							 <td width="80" align="right" class="Estilo4">12%</td>
+							 <td width="80" align="right" class="Estilo4">{{fcompraSelect.preuTotT3}}</td>							 
+                        </tr>
+
+                 </tbody>
+              </table>
+        </div>
+         
+              
+			<div>
+			   <table style="position: absolute; top: 972px; left: 450px; width: 250;">			 
+				 <tr>				 	
+			    	<td width="200" align="right" class="Estilo6"> total: </td>
+			    	<td width="100" align="right" class="Estilo6"> {{fcompraSelect.preuF}}&euro; </td>					
+				 </tr>
+				 <tr>
+			    	<td width="200" align="right" class="Estilo6"> total iva (12%): </td>
+			    	<td width="100" align="right" class="Estilo6"> {{fcompraSelect.ivaF}}&euro; </td>			
+				 </tr>
+				 <tr>
+			    	<td width="200" align="right" class="Estilo6"> total retencion (-2%): </td>
+			    	<td width="100" align="right" class="Estilo6"> -{{fcompraSelect.retF}}&euro; </td>			
+				 </tr>
+				 <tr>
+			    	<td width="200" align="right" class="Estilo6"> total factura: </td>
+			    	<td width="100" align="right" class="Estilo6"> {{fcompraSelect.preuIvaF}}&euro; </td>	
+
+			    				
+				 </tr>
+		      </table>
+			</div>
+
+        </body>
+</html>

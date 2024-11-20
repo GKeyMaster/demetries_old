@@ -1,0 +1,442 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idComanda -2%}
+		    <h2>Crear comanda nova</h2>	
+			<form action="/ComandaCrea" method="post">
+
+			<div class="form-group">
+				<label>Ultima Comanda: </label> <input type="text"
+				class="form-control" name="ultNumComanda" style="background-color: #BDBDBD" value="{{ultNumComanda}}">
+			</div>
+			<div class="form-group">
+				<label>Comanda: </label> <input type="text"
+				class="form-control" name="numComanda" value="{{comandaS}}">
+			</div>
+			<div class="form-group">
+				<label>Ultima Data Comanda: </label> <input type="text"
+				class="form-control" name="ultDataComanda" style="background-color: #BDBDBD" value="{{ultDataComanda}}">
+			</div>
+			<div class="form-group">
+					<label>Data: </label> <input type="text"
+					class="form-control" name="dataComanda" id="datepicker1" value="{{dataHui}}">
+			</div>
+			<div class="form-group">
+									<label>Client:</label> 
+									<select name="idClient" class="form-control">
+			                            <option>seleccio obligatoria</option>
+										{%for i in clientTots%}
+										<option value={{i.idClient}}>{{i.nomClient}}</option>
+										{%endfor%}
+									</select>
+								</div>
+			<div class="form-group">
+				<label>Ultima Factura: </label> <input type="text"
+				class="form-control" name="ultNumFactura" style="background-color: #BDBDBD" value="{{ultNumFactura}}">
+			</div>	
+			<div class="form-group">
+				<label>Factura: </label> <input type="text"
+				class="form-control" name="numFactura">
+			</div>
+			<div class="form-group">
+				<label>Ultima Data Factura: </label> <input type="text"
+				class="form-control" name="ultDataFactura" style="background-color: #BDBDBD" value="{{ultDataFactura}}">
+			</div>
+			<div class="form-group">
+					<label>Data Factura: </label> <input type="text"
+					class="form-control" name="dataFactura" id="datepicker2" >
+			</div>
+			<div class="form-group">
+						<label>Preparat:</label> 
+						<select name="preparat" class="form-control">
+							<option value=0>no</option>
+							<option value=1>si</option>
+						</select>
+					</div>
+            
+            <div class="form-group">
+                        <label>Descripcio: </label> <input type="text"
+                        class="form-control" name="descripcio">
+                    </div>
+
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idComanda -1%}
+			<form action="/ComandaNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Comanda</button>
+			</form>
+			<br>
+			
+			<h2>Comandes
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Comanda</th>
+						<th>Data Comanda</th>
+						<th>Client</th>
+						<th>Factura</th>
+						<th>Data Fac</th>
+						<th>Total</th>
+						<th>Pagat</th>
+						<th>Pendent</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in comandaTots%}
+					<tr>
+						{%ifequal i.preparat 1%}
+						<td>{{i.numComanda}}</td>
+						<td>{{i.dataComanda}}</td>
+						<td>{{i.client}}</td>
+						<td>{{i.numFactura}}</td>
+						<td>{{i.dataFactura}}</td>
+						<td>{{i.preuCt}}</td>
+						<td>{{i.pagatCt}}</td>
+							{%ifequal i.pendentCt "0.00"%}
+								<td>{{i.pendentCt}}</td>
+							{%else%}
+								<td id=color3>{{i.pendentCt}}</td>
+							{%endifequal%}
+						{%else%}
+						<td id=color5>{{i.numComanda}}</td>
+						<td id=color5>{{i.dataComanda}}</td>
+						<td id=color5>{{i.client}}</td>
+						<td id=color5>{{i.numFactura}}</td>
+						<td id=color5>{{i.dataFactura}}</td>
+						<td id=color5>{{i.preuCt}}</td>
+						<td id=color5>{{i.pagatCt}}</td>
+							{%ifequal i.pendentCt "0.00"%}
+								<td id=color5>{{i.pendentCt}}</td>
+							{%else%}
+								<td id=color3>{{i.pendentCt}}</td>
+							{%endifequal%}
+						{%endifequal%}
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/ComandaSelect?idComanda={{i.idComanda}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Comanda</h2>
+		    
+				<form action="/ComandaEdita" method="get">
+					<div class="form-group">
+						<label>Comanda: </label> <input type="text"
+						class="form-control" name="numComanda" value="{{comandaSelect.numComanda}}">
+					</div>
+					<div class="form-group">
+							<label>Data: </label> <input type="text"
+							class="form-control" name="dataComanda" id="datepicker3" value="{{comandaSelect.dataComanda}}" >
+					</div>
+					<div class="form-group">
+									<label>Client:</label> 
+									<select name="idClient" class="form-control">
+			                            {%for i in clientTots%}
+                                  			{%ifequal i.idClient comandaSelect.idClient%}
+                                       			<option value="{{i.idClient}}">{{i.nomClient}}</option>
+                                  			{%endifequal%}
+                             			{%endfor%}
+										{%for i in clientTots%}
+										<option value={{i.idClient}}>{{i.nomClient}}</option>
+										{%endfor%}
+									</select>
+					</div>
+					<div class="form-group">
+											<label>Nom Comercial --> Entrega:</label> 
+											<select name="entrega" class="form-control">
+												{%ifequal comandaSelect.entrega 1%}
+					                            <option value="1">{{clientSelect.nomComercial1}}-->{{clientSelect.direccioE}}</option>
+												<option value="2">{{clientSelect.nomComercial2}}-->{{clientSelect.direccioE2}}</option>
+												<option value="3">{{clientSelect.nomComercial3}}-->{{clientSelect.direccioE3}}</option>
+												<option value="4">{{clientSelect.nomClient}}-->{{clientSelect.direccioF}}</option>
+												{%else%}
+													{%ifequal comandaSelect.entrega 2%}
+														<option value="2">{{clientSelect.nomComercial2}}-->{{clientSelect.direccioE2}}</option>
+														<option value="1">{{clientSelect.nomComercial1}}-->{{clientSelect.direccioE}}</option>
+														<option value="3">{{clientSelect.nomComercial3}}-->{{clientSelect.direccioE3}}</option>
+														<option value="4">{{clientSelect.nomClient}}-->{{clientSelect.direccioF}}</option>
+													{%else%}
+														{%ifequal comandaSelect.entrega 3%}
+														<option value="3">{{clientSelect.nomComercial3}}-->{{clientSelect.direccioE3}}</option>
+														<option value="1">{{clientSelect.nomComercial1}}-->{{clientSelect.direccioE}}</option>
+														<option value="2">{{clientSelect.nomComercial2}}-->{{clientSelect.direccioE2}}</option>
+														<option value="4">{{clientSelect.nomClient}}-->{{clientSelect.direccioF}}</option>
+														{%else%}
+														<option value="4">{{clientSelect.nomClient}}-->{{clientSelect.direccioF}}</option>
+														<option value="3">{{clientSelect.nomComercial3}}-->{{clientSelect.direccioE3}}</option>
+														<option value="1">{{clientSelect.nomComercial1}}-->{{clientSelect.direccioE}}</option>
+														<option value="2">{{clientSelect.nomComercial2}}-->{{clientSelect.direccioE2}}</option>
+														{%endifequal%}
+													{%endifequal%}
+												{%endifequal%}
+											</select>
+										</div>
+			<div class="form-group">
+				<label>Ultima Factura: </label> <input type="text"
+				class="form-control" name="ultNumFactura" style="background-color: #BDBDBD" value="{{ultNumFactura}}">
+			</div>	
+
+
+					<div class="form-group">
+						<label>Factura: </label> <input type="text"
+						class="form-control" name="numFactura" value="{{comandaSelect.numFactura}}"">
+					</div>	
+			<div class="form-group">
+				<label>Ultima Data Factura: </label> <input type="text"
+				class="form-control" name="ultDataFactura" style="background-color: #BDBDBD" value="{{ultDataFactura}}">
+			</div>
+					<div class="form-group">
+							<label>Data Factura: </label> <input type="text"
+							class="form-control" name="dataFactura" id="datepicker4" value="{{comandaSelect.dataFactura}}" >
+					</div>	
+			<div class="form-group">
+							<label>Preparat:</label> 
+							<select name="preparat"
+								class="form-control">
+								{%ifequal comandaSelect.preparat 0%}
+								<option value=0>no</option>
+								<option value=1>si</option>
+								{%else%}
+								<option value=1>si</option>
+								<option value=0>no</option>
+								{%endifequal%}
+								
+							</select>
+						</div>	
+            <div class="form-group">
+                            <label>Descripcio: </label> <input type="text"
+                            class="form-control" name="descripcio" value="{{comandaSelect.descripcio}}"">
+                        </div>	
+									
+								<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+						
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+						</div>
+					
+				</form>
+							<br>
+			<form action="/LiniaComandaNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Inserta Producte</button>
+				<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+			</form>
+			<br>
+			
+			
+			
+			{%if liniaComandaTots%}
+			
+			<h2>Productes Comanda</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>codi</th>
+						<th>preu unit</th>
+						<th>unitat</th>
+						<th>quantitat</th>
+						<th>preu</th>
+						<th>tipoIva</th>
+						<th>iva</th>
+						<th>total</th>
+						<th>lot</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in liniaComandaTots%}
+					<tr>
+						<td>{{i.codiProducte}}</td>
+						<td>{{i.preuUnitT}}</td>
+						<td>{{i.unitat}}</td>
+						<td>{{i.quantitatT}}</td>
+						<td>{{i.preuT}}</td>
+						<td>{{i.percent}}</td>
+						<td>{{i.ivaT}}</td>
+						<td>{{i.preuTotT}}</td>
+						{%ifequal i.idLot -1%}
+						<td>SENSE LOT</td>
+						{%else%}
+							{%for j in lotTots%}
+                                  			{%ifequal i.idLot j.idLot%}
+                                  				<td>{{j.codiLot}}</td>
+                                  			{%endifequal%}
+                            {%endfor%}
+						{%endifequal%}
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/LiniaComandaSelect?idLiniaComanda={{i.idLiniaComanda}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			</div>
+			<br>
+			<h2>Total Comanda</h2>
+						<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Comanda</th>
+						<th>Iva</th>
+						<th>Total</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{totalComanda.totalSenseIva}}</td>
+						<td>{{totalComanda.ivaTotComT}}</td>
+						<td>{{totalComanda.totalFactura}}</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			
+			
+			{%endif%}
+			
+			<br>
+			
+			<form action="/PagamentNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Inserta Pagament</button>
+				<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+			</form>
+			<br>
+			<br>
+			
+			{%if pagamentTots%}
+			
+			<h2>Pagaments Comanda</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>data</th>
+						<th>quantitat</th>
+						<th>forma</th>
+						<th>descripcio</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in pagamentTots%}
+					<tr>
+						<td>{{i.dataPagament}}</td>
+						<td>{{i.quantitat}}</td>
+						<td>{{i.formaPagament}}</td>
+						<td>{{i.descripcio}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/PagamentSelect?idPagament={{i.idPagament}}&idComanda={{i.idComanda}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			</div>
+			<br>
+			<h2>Total Pagaments</h2>
+						<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{totalPagament}}</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			
+			{%endif%}
+			
+			{%if comandaSelect.idClient%}
+                {%ifequal clientSelect.recarrec 1%}
+				<div>
+				<form action="/ImpAlbaraRecarrec" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Albar&agrave; amb recarrec</button>
+					<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				</div>
+                {%else%}
+                <div>
+                    <form action="/ImpAlbara" method="get">
+                        <button type="submit" class="btn btn-lg btn-primary" >Albar&agrave;</button>
+                        <input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+                    </form>
+                </div>
+                {%endifequal%}
+				<br>
+				{%if comandaSelect.numFactura%}
+                    {%ifequal clientSelect.recarrec 1%}
+				<div>
+				<form action="/ImpFacturaRecarrec" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Factura amb recarrec</button>
+					<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				</div>
+                    {%else%}
+                    <div>
+                        <form action="/ImpFactura" method="get">
+                            <button type="submit" class="btn btn-lg btn-primary" >Factura</button>
+                            <input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+                        </form>
+                    </div>
+                    {%endifequal%}
+				{%endif%}
+				<br>
+				<div>
+				<form action="/ImpEnviar" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Enviar</button>
+					<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				</div>
+		   {%endif%}
+				
+				<br>
+				<br><br><br>
+				<div>
+				<form action="/ComandaTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Comandes</button>
+				</form>
+				</div>
+				<br>
+				<div>
+				<form action="/ComandaElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Comanda</button>
+					<input type="text" name="idComanda" value="{{comandaSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

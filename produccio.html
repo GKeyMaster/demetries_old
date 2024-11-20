@@ -1,0 +1,214 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+    {%ifequal idProduccio -3%}
+    <h2>Seleccionar Quadern de Camp</h2>
+    <form action="/ProduccioQuadernSelect" method="post">
+        <div class="form-group">
+            <label>Varietat:</label> 
+            <select name="idVarietat" class="form-control">
+                <option>seleccio obligatoria</option>
+                {%for i in trufaTots%}
+                <option value={{i.idTrufa}}>{{i.varietat}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary" >OK</button>
+    
+    
+    </form>	
+
+    {%else%}
+
+		{%ifequal idProduccio -2%}
+		    <h2>Crear l&iacute;nia nova  {{varietatSelect.varietat}}</h2>	
+			<form action="/ProduccioCrea" method="post">
+
+                <div class="form-group">
+                    <label>&Uacute;ltim &uacute;mero: </label> <input type="text"
+                    class="form-control" name="varietat" style="background-color: #BDBDBD" value="{{numeroUltim}}">
+                </div>
+                <div class="form-group">
+                    <label>N&uacute;mero: </label> <input type="text"
+                    class="form-control" name="numero">
+                </div>
+                <div class="form-group">
+					<label>Data recollida: </label> <input type="text"
+					class="form-control" name="data" id="datepicker1" >
+			    </div>
+                <div class="form-group">
+                    <label>Quantitat recollida(kg): </label> <input type="text"
+                    class="form-control" name="quantitat">
+                </div>
+                <div class="form-group">
+									<label>Finca:</label> 
+									<select name="idFinca" class="form-control">
+			                            <option>seleccio obligatoria</option>
+										{%for i in fincaTots%}
+										<option value={{i.idFinca}}>{{i.finca}}</option>
+										{%endfor%}
+									</select>
+								</div>
+                <div class="form-group">
+                                    <label>Quantitat utilitzada(g): </label> <input type="text"
+                                    class="form-control" name="quantitatU">
+                </div>
+                <div class="form-group">
+                                    <label>Lot producte elaborat: </label> <input type="text"
+                                    class="form-control" name="lotE">
+                </div>
+                <div class="form-group">
+                                    <label>Quantitat producte elaborat (g): </label> <input type="text"
+                                    class="form-control" name="quantitatE">
+                </div>
+			    <div class="form-group">
+                                    <label>Varietat: </label> <input type="text"
+                                    class="form-control" name="varietat" style="background-color: #BDBDBD" value="{{varietatSelect.varietat}}">
+								</div>
+			
+			
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+            <input type="text" name="idVarietat" value="{{idVarietat}}" style="visibility: hidden" />
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idProduccio -1%}
+			<form action="/ProduccioNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea l&iacute;nia {{varietatSelect.varietat}}</button>
+                <input type="text" name="idVarietat" value="{{idVarietat}}" style="visibility: hidden" />
+			
+			</form>
+			<br>
+            <form action="/ImpProduccio" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Llista</button>
+                <input type="text" name="idVarietat" value="{{idVarietat}}" style="visibility: hidden" />
+			</form>
+			<br>
+			
+			<h2>{{varietatSelect.varietat}}
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>n&uacute;m</th>
+						<th>recollida</th>
+						<th>recollits(kg)</th>
+						<th>finca</th>
+                        <th>utilitzats(g)</th>
+                        <th>lot el.</th>
+                        <th>elaborats(g)</th>
+                        <th>varietat</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in produccioTots%}
+					<tr>
+						<td>{{i.numero}}</td>
+                        <td>{{i.data}}</td>
+                        <td>{{i.quantitat}}</td>
+                        <td>{{i.codiFinca}}</td>
+                        <td>{{i.quantitatU}}</td>
+                        <td>{{i.lotE}}</td>
+                        <td>{{i.quantitatE}}</td>
+						<td>{{i.varietat}}</td>
+						
+						
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/ProduccioSelect?idProduccio={{i.idProduccio}}&idVarietat={{i.idTrufa}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita l&iacute;nia {{varietatSelect.varietat}}</h2>	
+				<form action="/ProduccioEdita" method="get">
+				
+					<div class="form-group">
+                        <label>N&uacute;mero: </label> <input type="text"
+                            class="form-control" name="numero" value="{{produccioSelect.numero}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Data recollida:  </label> <input type="text"
+                            class="form-control" name="data" id="datepicker2" value="{{produccioSelect.data}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat recollida(kg): </label> <input type="text"
+                            class="form-control" name="quantitat" value="{{produccioSelect.quantitat}}">
+                    </div>
+                    
+                    <div class="form-group">
+											<label>Finca:</label> 
+											<select name="idFinca" class="form-control">
+					                             {%for i in fincaTots%}
+					                                  {%ifequal i.idFinca produccioSelect.idFinca%}
+					                                       <option value="{{i.idFinca}}">{{i.finca}}</option>
+					                                  {%endifequal%}
+					                             {%endfor%}
+												{%for i in fincaTots%}
+												<option value={{i.idFinca}}>{{i.finca}}</option>
+												{%endfor%}
+											</select>
+										</div>
+
+                    <div class="form-group">
+                                            <label>Quantitat utilitzada(g): </label> <input type="text"
+                                                class="form-control" name="quantitatU" value="{{produccioSelect.quantitatU}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Lot producte elaborat: </label> <input type="text"
+                            class="form-control" name="lotE" value="{{produccioSelect.lotE}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat producte elaborat (g): </label> <input type="text"
+                            class="form-control" name="quantitatE" value="{{produccioSelect.quantitatE}}">
+                    </div>
+
+                    
+						<div class="form-group">
+                                            <label>Varietat: </label> <input type="text"
+                                             class="form-control" name="varietat" style="background-color: #BDBDBD" value="{{varietatSelect.varietat}}">
+                        
+										</div>	
+														
+						
+								
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+								<input type="text" name="idProduccio" value="{{produccioSelect.idProduccio}}" style="visibility: hidden" />
+                                <input type="text" name="idVarietat" value="{{varietatSelect.idVarietat}}" style="visibility: hidden" />
+						</div>
+					
+				</form>
+				<br>
+				<div>
+				<form action="/ProduccioTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" > tots {{varietatSelect.varietat}}</button>
+					<input type="text" name="idVarietat" value="{{produccioSelect.idTrufa}}" style="visibility: hidden" />
+				</form>
+				<br><br><br>
+				<form action="/ProduccioElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina l&iacute;nia {{varietatSelect.varietat}}</button>
+					<input type="text" name="idProduccio" value="{{produccioSelect.idProduccio}}" style="visibility: hidden" />
+                    <input type="text" name="idVarietat" value="{{varietatSelect.idVarietat}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+    {%endifequal%}
+
+
+{% include "footer.html" %}

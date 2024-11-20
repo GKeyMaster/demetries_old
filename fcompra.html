@@ -1,0 +1,247 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idFCompra -2%}
+		    <h2>Crear factura de compra nova</h2>	
+			<form action="/FCompraCrea" method="post">
+			
+			<label>Productor:</label> 
+									<select name="idProductor" class="form-control">
+                             			<option value=-1></option>
+										{%for i in productorTots%}
+										<option value="{{i.idProductor}}">{{i.nomProductor}} // {{i.nomComercial}}</option>
+										{%endfor%}
+									</select>
+			
+			<br>
+			<div class="form-group">
+				<label>Ultima Factura Compra: </label> <input type="text"
+				class="form-control" name="ultNumFCompra" style="background-color: #BDBDBD" value="{{ultNumFCompra}}">
+			</div>
+
+			<div class="form-group">
+				<label>Numero Factura Compra: </label> <input type="text"
+				class="form-control" name="numFCompra" value="{{fcompraS}}">
+			</div>
+			<div class="form-group">
+				<label>Ultima Data Factura Compra: </label> <input type="text"
+				class="form-control" name="ultDataFCompra" style="background-color: #BDBDBD" value="{{ultDataFCompra}}">
+			</div>
+			<div class="form-group">
+				<label>Data Factura Compra: </label> <input type="text"
+				class="form-control" name="dataFCompra" id="datepicker1" value="{{dataHui}}">
+			</div>
+			<br>
+			<div class="form-group">
+				<label>Producte 1: </label> <input type="text"
+				class="form-control" name="producte1">
+			</div>	
+			<div class="form-group">
+				<label>Preu Unitari 1: </label> <input type="text"
+				class="form-control" name="preuUnit1" >
+			</div>
+			<div class="form-group">
+				<label>Unitat 1: </label> <input type="text"
+				class="form-control" name="unitat1" placeholder="€/g">
+			</div>
+			<div class="form-group">
+				<label>Quantitat 1: </label> <input type="text"
+				class="form-control" name="quantitat1" >
+			</div>
+			<br>
+			<div class="form-group">
+				<label>Producte 2: </label> <input type="text"
+				class="form-control" name="producte2">
+			</div>	
+			<div class="form-group">
+				<label>Preu Unitari 2: </label> <input type="text"
+				class="form-control" name="preuUnit2" >
+			</div>
+			<div class="form-group">
+				<label>Unitat 2: </label> <input type="text"
+				class="form-control" name="unitat2" placeholder="€/g">
+			</div>
+			<div class="form-group">
+				<label>Quantitat 2: </label> <input type="text"
+				class="form-control" name="quantitat2" >
+			</div>
+			<br>
+			<div class="form-group">
+				<label>Producte 3: </label> <input type="text"
+				class="form-control" name="producte3">
+			</div>	
+			<div class="form-group">
+				<label>Preu Unitari 3: </label> <input type="text"
+				class="form-control" name="preuUnit3" >
+			</div>
+			<div class="form-group">
+				<label>Unitat 3: </label> <input type="text"
+				class="form-control" name="unitat3" placeholder="€/g">
+			</div>
+			<div class="form-group">
+				<label>Quantitat 3: </label> <input type="text"
+				class="form-control" name="quantitat3" >
+			</div>
+
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idFCompra -1%}
+			<form action="/FCompraNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Factura Compra</button>
+			</form>
+			<br>
+			
+			<h2>Factures de Compra</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Numero</th>
+						<th>Data</th>
+						<th>NomF</th>
+						<th>NomC</th>
+						<th>CIF</th>
+						<th>preu</th>
+						<th>preuIva</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in fcompraTots%}
+					<tr>
+						<td>{{i.numFCompra}}</td>
+						<td>{{i.dataFCompra}}</td>
+						<td>{{i.nomProductor}}</td>
+						<td>{{i.nomComercial}}</td>
+						<td>{{i.cifProductor}}</td>
+						<td>{{i.preuF}}</td>
+						<td>{{i.preuIvaF}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/FCompraSelect?idFCompra={{i.idFCompra}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Factura Compra</h2>	
+				<form action="/ProductorEdita" method="get">
+						<label>Productor:</label> 
+									<select name="idProductor" class="form-control">
+			                            {%for i in productorTots%}
+                                  			{%ifequal i.idProductor fcompraSelect.idProductor%}
+                                       			<option value="{{i.idProductor}}">{{i.nomProductor}} // {{i.nomComercial}}</option>
+                                  			{%endifequal%}
+                             			{%endfor%}
+                             			<option value=-1></option>
+										{%for i in lotTots%}
+										<option value="{{i.idLot}}">{{i.codiLot}} // {{i.descripcio}} // {{i.dataLot}}</option>
+										{%endfor%}
+									</select>
+									
+						<div class="form-group">
+							<label>Numero Factura Compra: </label> <input type="text"
+							class="form-control" name="numFCompra" value="{{fcompraSelect.numFCompra}}">
+						</div>
+						<div class="form-group">
+							<label>Data: </label> <input type="text"
+							class="form-control" name="dataFCompra" id="datepicker3" value="{{fcompraSelect.dataFCompra}}" >
+					    </div>
+						<br>
+						<div class="form-group">
+							<label>Producte 1: </label> <input type="text"
+							class="form-control" name="producte1" value="{{fcompraSelect.producte1}}">
+						</div>	
+						<div class="form-group">
+							<label>Preu Unitari 1: </label> <input type="text"
+							class="form-control" name="preuUnit1" value="{{fcompraSelect.preuUnitT1}}" >
+						</div>
+						<div class="form-group">
+							<label>Unitat 1: </label> <input type="text"
+							class="form-control" name="unitat1"  value="{{fcompraSelect.unitat1}}">
+						</div>
+						<div class="form-group">
+							<label>Quantitat 1: </label> <input type="text"
+							class="form-control" name="quantitat1" value="{{fcompraSelect.quantitatT1}}">
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Producte 2: </label> <input type="text"
+							class="form-control" name="producte2" value="{{fcompraSelect.producte2}}">
+						</div>	
+						<div class="form-group">
+							<label>Preu Unitari 2: </label> <input type="text"
+							class="form-control" name="preuUnit2" value="{{fcompraSelect.preuUnitT2}}">
+						</div>
+						<div class="form-group">
+							<label>Unitat 2: </label> <input type="text"
+							class="form-control" name="unitat2" value="{{fcompraSelect.unitat2}}">
+						</div>
+						<div class="form-group">
+							<label>Quantitat 2: </label> <input type="text"
+							class="form-control" name="quantitat2" value="{{fcompraSelect.quantitatT2}}">
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Producte 3: </label> <input type="text"
+							class="form-control" name="producte3" value="{{fcompraSelect.producte3}}">
+						</div>	
+						<div class="form-group">
+							<label>Preu Unitari 3: </label> <input type="text"
+							class="form-control" name="preuUnit3" value="{{fcompraSelect.preuUnitT3}}">
+						</div>
+						<div class="form-group">
+							<label>Unitat 3: </label> <input type="text"
+							class="form-control" name="unitat3" value="{{fcompraSelect.unitat3}}">
+						</div>
+						<div class="form-group">
+							<label>Quantitat 3: </label> <input type="text"
+							class="form-control" name="quantitat3" value="{{fcompraSelect.quantitatT3}}">
+						</div>
+																
+								<input type="text" name="idFCompra" value="{{fcompraSelect.idFCompra}}" style="visibility: hidden" />
+						
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+						</div>
+						
+						
+					
+				</form>
+				<br>
+				<div>
+				<form action="/ImpFCompra" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Imprimir</button>
+					<input type="text" name="idFCompra" value="{{fcompraSelect.idFCompra}}" style="visibility: hidden" />
+				</form>
+				</div>
+				<br>
+				<div>
+				<form action="/FCompraTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Factures de Compra</button>
+				</form>
+				<br><br><br>
+				<form action="/FCompraElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Factura Compra</button>
+					<input type="text" name="idFCompra" value="{{fcompraSelect.idFCompra}}" style="visibility: hidden" />
+				</form>
+				</div>
+				
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

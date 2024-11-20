@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+            <head> <!-- titol en pestana -->  
+               <title>enviarImp</title>
+               <style type="text/css">
+<!--
+.Estilo2 {
+	font-size: 10mm;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.Estilo3 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; }
+.Estilo4 {
+	font-size: 4mm;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Estilo5 {font-size: 3mm; font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;}
+.Estilo6 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+-->
+               </style>
+        </head>
+        <head>
+		<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+        </head>
+        <body>
+ 
+			 
+            <div>
+			   <div align="left">
+			     <table style="position: absolute; top: 60px; left: 400px; width: 365px;">
+			       <tr>
+			         <td width="150" align="left" class="Estilo3">DAMALIA FILLES SL</td>
+				   </tr>
+				   <tr>
+			         <td width="150" align="left" class="Estilo3">B72902273</td>
+				   </tr>
+				   <tr>
+			         <td width="150" align="left" class="Estilo3">Benassal a Villafranca Km 4,15</td>
+				   </tr>
+				   <tr>
+			         <td width="150" align="left" class="Estilo3">12160 Benassal, Castell&oacute;</td>
+				   </tr>
+				   <tr>
+			         <td width="150" align="left" class="Estilo3">tel: 630 51 78 72</td>
+				   </tr>
+				   <tr>
+			         <td width="150" align="left" class="Estilo3">info@demetriotrufadebenassal.es</td>
+				   </tr>
+				   
+			       		 				 				 
+	             </table>
+		      </div>
+		</div>              
+			 
+            <div>
+			   <div align="left">
+			     <table style="position: absolute; top: 280px; left: 90px; width: 365px;">
+			       <tr>
+			         <td width="150" align="left" class="Estilo6">Entrega:</td>
+				   </tr>
+			       
+				   {%ifequal comandaSelect.entrega 1%}
+			       <p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{clientSelect.nomComercial1}}</div></td>
+			         </tr></p>
+                    <p> <td width="357" class="Estilo3"><div align="left">{{clientSelect.telClient}}</div></td>
+					         </tr></p>
+			       <p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{clientSelect.direccioE}}</div></td>
+			         </tr></p>
+                     
+			       {%else%}
+			       		{%ifequal comandaSelect.entrega 2%}
+			       		<p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{clientSelect.nomComercial2}}</div></td>
+			         </tr></p>
+                     <p><td width="357" class="Estilo3"><div align="left">{{clientSelect.telClient}}</div></td>
+					         </tr></p>
+			       <p><tr>
+			         <td width="357" class="Estilo3"><div align="left">{{clientSelect.direccioE2}}</div></td>
+			         </tr></p>
+                     
+			         	{%else%}
+					         	{%ifequal comandaSelect.entrega 3%}
+					         	<td width="357" class="Estilo3"><div align="left">{{clientSelect.nomComercial3}}</div></td>
+					         </tr></p>
+                             <p><td width="357" class="Estilo3"><div align="left">{{clientSelect.telClient}}</div></td>
+					         </tr></p>
+					       <p><tr>
+					         <td width="357" class="Estilo3"><div align="left">{{clientSelect.direccioE3}}</div></td>
+					         </tr></p>				         	
+					       		{%else%}
+					       		<p><tr>
+					         <td width="357" class="Estilo3"><div align="left">{{clientSelect.nomClient}}</div></td>
+					         </tr></p>
+                             <p><td width="357" class="Estilo3"><div align="left">{{clientSelect.telClient}}</div></td>
+					         </tr></p>
+					       <p><tr>
+					         <td width="357" class="Estilo3"><div align="left">{{clientSelect.direccioF}}</div></td>
+					         </tr></p>
+                             <p><tr>
+				         		{%endifequal%}
+				         {%endifequal%}
+			       {%endifequal%}
+			       
+			       		 				 				 
+	             </table>
+		      </div>
+		</div>
+
+
+         
+          
+			<img src="img/Logo.jpg" style="position: absolute; top: 10px; left: 30px" alt="" width="350" />
+        </body>
+</html>

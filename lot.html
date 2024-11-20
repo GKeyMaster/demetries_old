@@ -1,0 +1,144 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idLot -2%}
+		    <h2>Crear lot nou</h2>	
+			<form action="/LotCrea" method="post">
+
+			<div class="form-group">
+				<label>Ultim Lot: </label> <input type="text"
+				class="form-control" name="ultCodiLot" style="background-color: #BDBDBD" value="{{ultCodiLot}}">
+			</div>
+			<div class="form-group">
+				<label>Num. Lot: </label> <input type="text"
+				class="form-control" name="codiLot">
+			</div>
+			<div class="form-group">
+				<label>Data Ultim Lot: </label> <input type="text"
+				class="form-control" name="ultDataLot" style="background-color: #BDBDBD" value="{{ultDataLot}}">
+			</div>
+			<div class="form-group">
+					<label>Data Lot: </label> <input type="text"
+					class="form-control" name="dataLot" id="datepicker1" >
+			</div>
+			<div class="form-group">
+				<label>Titular: </label> <input type="text"
+				class="form-control" name="titular" value="Maria Pilar Ferrando Cantallops">
+			</div>
+			<div class="form-group">
+				<label>Receptor: </label> <input type="text"
+				class="form-control" name="receptor">
+			</div>
+			<div class="form-group">
+				<label>Descripcio: </label> <input type="text"
+				class="form-control" name="descripcio">
+			</div>		
+			<div class="form-group">
+				<label>Tra&ccedil;abilitat: </label>
+				<textarea class="form-control" name="lot" rows="20"></textarea>
+			</div>
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idLot -1%}
+			<form action="/LotNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Lot</button>
+			</form>
+			<br>
+            <form action="/ImpLot" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Llista</button>
+			</form>
+			<br>
+			
+			<h2>Lots
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Num. Lot</th>
+						<th>Data</th>
+						<th>Descripcio</th>
+						<th>Receptor</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in lotTots%}
+					<tr>
+						<td>{{i.codiLot}}</td>
+						<td>{{i.dataLot}}</td>
+						<td>{{i.descripcio}}</td>
+						<td>{{i.receptor}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/LotSelect?idLot={{i.idLot}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Lot</h2>	
+				<form action="/LotEdita" method="get">
+				
+						<div class="form-group">
+							<label>Num. Lot: </label> <input type="text"
+							class="form-control" name="codiLot" value="{{lotSelect.codiLot}}">
+						</div>
+						<div class="form-group">
+								<label>Data Lot: </label> <input type="text"
+								class="form-control" name="dataLot" id="datepicker1" value="{{lotSelect.dataLot}}">
+						</div>
+						<div class="form-group">
+							<label>Titular: </label> <input type="text"
+							class="form-control" name="titular" value="{{lotSelect.titular}}">
+						</div>
+						<div class="form-group">
+							<label>Receptor: </label> <input type="text"
+							class="form-control" name="receptor" value="{{lotSelect.receptor}}">
+						</div>	
+						<div class="form-group">
+							<label>Descripcio: </label> <input type="text"
+							class="form-control" name="descripcio" value="{{lotSelect.descripcio}}">
+						</div>	
+						<div class="form-group">
+							<label>Tra&ccedil;abilitat: </label>
+							<textarea class="form-control" name="lot" rows="20">{{lotSelect.lot}}</textarea>
+						</div>							
+								
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+								<input type="text" name="idLot" value="{{lotSelect.idLot}}" style="visibility: hidden" />
+						</div>
+					
+				</form>
+				<br>
+				<div>
+				<form action="/LotTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Lots</button>
+				</form>
+				<br><br><br>
+				<form action="/LotElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Lot</button>
+					<input type="text" name="idLot" value="{{lotSelect.idLot}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

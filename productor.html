@@ -1,0 +1,125 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idProductor -2%}
+		    <h2>Crear productor nou</h2>	
+			<form action="/ProductorCrea" method="post">
+
+			<div class="form-group">
+				<label>Nom: </label> <input type="text"
+				class="form-control" name="nomProductor">
+			</div>
+			<div class="form-group">
+				<label>Direcció Fiscal: </label> <input type="text"
+				class="form-control" name="direccioF">
+			</div>
+			
+			<div class="form-group">
+				<label>CIF: </label> <input type="text"
+				class="form-control" name="cifProductor">
+			</div>	
+			<div class="form-group">
+				<label>Nom Comercial: </label> <input type="text"
+				class="form-control" name="nomComercial" >
+			</div>
+			<div class="form-group">
+				<label>Descripcio: </label>
+				<textarea class="form-control" name="descripcio" rows="20"></textarea>
+			</div>
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idProductor -1%}
+			<form action="/ProductorNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Productor</button>
+			</form>
+			<br>
+			
+			<h2>Productors</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Nom comercial</th>
+						<th>Direccio fiscal</th>
+						<th>CIF</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in productorTots%}
+					<tr>
+						<td>{{i.nomProductor}}</td>
+						<td>{{i.nomComercial}}</td>
+						<td>{{i.direccioF}}</td>
+						<td>{{i.cifProductor}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/ProductorSelect?idProductor={{i.idProductor}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Productor</h2>	
+				<form action="/ProductorEdita" method="get">
+						<div class="form-group">
+							<label>Nom: </label> <input type="text"
+							class="form-control" name="nomProductor" value="{{productorSelect.nomProductor}}">
+						</div>
+						<div class="form-group">
+							<label>Direccio fiscal: </label> <input type="text"
+							class="form-control" name="direccioF" value="{{productorSelect.direccioF}}">
+						</div>
+						<div class="form-group">
+							<label>CIF: </label> <input type="text"
+							class="form-control" name="cifProductor" value="{{productorSelect.cifProductor}}">
+						</div>	
+						<div class="form-group">
+							<label>Nom Comercial: </label> <input type="text"
+							class="form-control" name="nomComercial" value="{{productorSelect.nomComercial}}">
+						</div>
+						<div class="form-group">
+							<label>Descripcio: </label>
+							<textarea class="form-control" name="descripcio" rows="20">{{productorSelect.descripcio}}</textarea>
+						</div>
+																
+								<input type="text" name="idProductor" value="{{productorSelect.idProductor}}" style="visibility: hidden" />
+						
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+						</div>
+						
+						
+					
+				</form>
+				<br>
+				<div>
+				<form action="/ProductorTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Productor</button>
+				</form>
+				<br><br><br>
+				<form action="/ProductorElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Productor</button>
+					<input type="text" name="idProductor" value="{{productorSelect.idProductor}}" style="visibility: hidden" />
+				</form>
+				</div>
+				
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

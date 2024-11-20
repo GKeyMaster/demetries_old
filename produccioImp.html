@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+            <head> <!-- titol en pestana -->  
+               <title>ProdImp</title>
+               <style type="text/css">
+               table,td {border: 1px solid black;}
+                <!--
+                .Estilo2 {
+                    font-size: 10mm;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: bold;
+                }
+                .Estilo3 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; }
+                .Estilo4 {
+                    font-size: 4mm;
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+                .Estilo5 {font-size: 3mm; font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;}
+                .Estilo6 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+                -->
+               </style>
+        </head>
+        <head>
+		<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+        </head>
+        <body>
+        <div class="Estilo5">
+            <table style="position: absolute; top: 500 px; left: 30px;">
+				<tbody>
+					{%for i in quadernTots%}
+                    <thead>
+                        <tr>
+                            <th align="left">N&uacute;m. Prod.:</th>
+                            <th align="left">Data recollida:</th>
+                            <th align="left">kg recollits:</th>
+                            <th align="left">Finca:</th>
+                            <th align="left">gr utilitzats:</th>
+                            <th align="left">Lot elaborat:</th>
+                            <th align="left">gr elaborats:</th>
+                            <th align="left">varietat:</th>
+                        </tr>
+                    </thead>
+					<tr>
+						<td>{{i.numero}}</td>
+						<td>{{i.data}}</td>
+						<td>{{i.quantitat}}</td>
+                        <td>{{i.finca}}</td>
+                        <td>{{i.quantitatU}}</td>
+                        <td>{{i.lotE}}</td>
+                        <td>{{i.quantitatE}}</td>
+                        <td>{{varietatSelect.varietat}}</td>
+					</tr>
+                    <thead>
+                        <tr>
+                            <th colspan="8"> · </th>
+                        </tr>
+                        <tr>
+                            <th colspan="8"> · </th>
+                        </tr>
+                    </thead>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+
+        </body>
+</html>

@@ -1,0 +1,379 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idSimplificada -2%}
+		    <h2>Crear simplificada nova</h2>	
+			<form action="/SimplificadaCrea" method="get">
+
+			<div class="form-group">
+				<label>Numero: </label> <input type="text"
+				class="form-control" name="factSimpli" value="{{simplificadaS}}">
+			</div>
+			<div class="form-group">
+					<label>Data: </label> <input type="text"
+					class="form-control" name="data" id="datepicker1" value="{{dataHui}}">
+			</div>
+            <br>
+            <div class="form-group">
+                <label>Producte1:</label> 
+                <select name="idProducte1" class="selectpicker show-menu-arrow" 
+                data-style="form-control" 
+                data-live-search="true"
+                title="Producte1"
+                data-width="auto"
+                >
+                                     <option value="-1"></option>
+                           {%for i in producteTotsSimpli%}
+                                     <option value={{i.idProducte}}>{{i.producte}}</option>
+                           {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+				<label>Quantitat1: </label> <input type="text"
+				class="form-control" name="quantitat1" value="0">
+			</div>
+            <br>
+            <div class="form-group">
+                <label>Producte2:</label>
+                <select name="idProducte2" class="selectpicker show-menu-arrow" 
+                data-style="form-control" 
+                data-live-search="true"
+                title="Producte2"
+                data-width="auto"
+                >
+                                     <option value="-1"></option>
+                           {%for i in producteTotsSimpli%}
+                                     <option value={{i.idProducte}}>{{i.producte}}</option>
+                           {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+				<label>Quantitat2: </label> <input type="text"
+				class="form-control" name="quantitat2" value="0">
+			</div>
+            <br>
+            <div class="form-group">
+                <label>Producte3:</label>
+                <select name="idProducte3" class="selectpicker show-menu-arrow" 
+                data-style="form-control" 
+                data-live-search="true"
+                title="Producte3"
+                data-width="auto"
+                >
+                                     <option value="-1"></option>
+                           {%for i in producteTotsSimpli%}
+                                     <option value={{i.idProducte}}>{{i.producte}}</option>
+                           {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+				<label>Quantitat3: </label> <input type="text"
+				class="form-control" name="quantitat3" value="0">
+			</div>
+            <br>
+            <div class="form-group">
+                <label>Producte4:</label>
+                <select name="idProducte4" class="selectpicker show-menu-arrow" 
+                data-style="form-control" 
+                data-live-search="true"
+                title="Producte4"
+                data-width="auto"
+                >
+                                     <option value="-1"></option>
+                           {%for i in producteTotsSimpli%}
+                                     <option value={{i.idProducte}}>{{i.producte}}</option>
+                           {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+				<label>Quantitat4: </label> <input type="text"
+				class="form-control" name="quantitat4" value="0">
+			</div>
+            <br>
+            <div class="form-group">
+                <label>Producte5:</label>
+                <select name="idProducte5" class="selectpicker show-menu-arrow" 
+                data-style="form-control" 
+                data-live-search="true"
+                title="Producte5"
+                data-width="auto"
+                >
+                                     <option value="-1"></option>
+                           {%for i in producteTotsSimpli%}
+                                     <option value={{i.idProducte}}>{{i.producte}}</option>
+                           {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+				<label>Quantitat5: </label> <input type="text"
+				class="form-control" name="quantitat5" value="0">
+			</div>
+            <br>
+            <div class="form-group">
+                <label>Producte6:</label>
+                <select name="idProducte6" class="selectpicker show-menu-arrow" 
+                data-style="form-control" 
+                data-live-search="true"
+                title="Producte6"
+                data-width="auto"
+                >
+                                     <option value="-1"></option>
+                           {%for i in producteTotsSimpli%}
+                                     <option value={{i.idProducte}}>{{i.producte}}</option>
+                           {%endfor%}
+                </select>
+            </div>
+            <div class="form-group">
+				<label>Quantitat6: </label> <input type="text"
+				class="form-control" name="quantitat6" value="0">
+			</div>
+			<div class="form-group">
+					<label>FormaPagament:</label> 
+									<select name="idFormaPagament" class="form-control">
+										{%for i in formaPagamentTots%}
+										<option value={{i.idFormaPagament}}>{{i.formaPagament}}</option>
+										{%endfor%}
+									</select>
+								</div>
+
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idSimplificada -1%}
+			<form action="/SimplificadaNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Simplificada</button>
+			</form>
+			<br>
+			
+			<h2>Simplificades
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Simplificada</th>
+						<th>Data</th>
+						<th></th>
+                        <th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in simplificadaTots%}
+					<tr>
+						<td>{{i.factSimpli}}</td>
+						<td>{{i.data}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/SimplificadaSelect?idSimplificada={{i.idSimplificada}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a class="btn btn-lg btn-primary btn-xs" role="button"
+                                    href="/SimplificadaElimina?idSimplificada={{i.idSimplificada}}"> <span
+                                        class="glyphicon glyphicon-remove"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Simplificada</h2>
+		    
+				<form action="/SimplificadaEdita" method="get">
+					<div class="form-group">
+						<label>Simplificada: </label> <input type="text"
+						class="form-control" name="factSimpli" value="{{simplificadaSelect.factSimpli}}">
+					</div>
+					<div class="form-group">
+							<label>Data: </label> <input type="text"
+							class="form-control" name="data" id="datepicker3" value="{{simplificadaSelect.data}}" >
+					</div>
+                    <br>
+                    <div class="form-group">
+                        <label>Producte1:</label>
+                        <select name="idProducte1" class="selectpicker show-menu-arrow" 
+                        data-style="form-control" 
+                        data-live-search="true"
+                        title="Producte1"
+                        data-width="auto"
+                        >
+                                    {%for i in producteTotsSimpli%}
+                                        {%ifequal i.idProducte simplificadaSelect.idProducte1%}
+                                            <option value="{{i.idProducte}}">{{i.producte}}</option>
+                                        {%endifequal%}
+                                    {%endfor%}
+                                    <option value="-1"></option>
+                                   {%for i in producteTotsSimpli%}
+                                             <option value={{i.idProducte}}>{{i.producte}}</option>
+                                   {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat1: </label> <input type="text"
+                        class="form-control" name="quantitat1" value="{{simplificadaSelect.quantitat1}}">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Producte2:</label>
+                        <select name="idProducte2" class="selectpicker show-menu-arrow" 
+                        data-style="form-control" 
+                        data-live-search="true"
+                        title="Producte2"
+                        data-width="auto"
+                        >
+                                    {%for i in producteTotsSimpli%}
+                                        {%ifequal i.idProducte simplificadaSelect.idProducte2%}
+                                            <option value="{{i.idProducte}}">{{i.producte}}</option>
+                                        {%endifequal%}
+                                    {%endfor%}
+                                    <option value="-1"></option>
+                                   {%for i in producteTotsSimpli%}
+                                             <option value={{i.idProducte}}>{{i.producte}}</option>
+                                   {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat2: </label> <input type="text"
+                        class="form-control" name="quantitat2" value="{{simplificadaSelect.quantitat2}}">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Producte3:</label>
+                        <select name="idProducte3" class="selectpicker show-menu-arrow" 
+                        data-style="form-control" 
+                        data-live-search="true"
+                        title="Producte3"
+                        data-width="auto"
+                        >
+                                    {%for i in producteTotsSimpli%}
+                                        {%ifequal i.idProducte simplificadaSelect.idProducte3%}
+                                            <option value="{{i.idProducte}}">{{i.producte}}</option>
+                                        {%endifequal%}
+                                    {%endfor%}
+                                    <option value="-1"></option>
+                                   {%for i in producteTotsSimpli%}
+                                             <option value={{i.idProducte}}>{{i.producte}}</option>
+                                   {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat3: </label> <input type="text"
+                        class="form-control" name="quantitat3" value="{{simplificadaSelect.quantitat3}}">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Producte4:</label>
+                        <select name="idProducte4" class="selectpicker show-menu-arrow" 
+                        data-style="form-control" 
+                        data-live-search="true"
+                        title="Producte4"
+                        data-width="auto"
+                        >
+                                    {%for i in producteTotsSimpli%}
+                                        {%ifequal i.idProducte simplificadaSelect.idProducte4%}
+                                            <option value="{{i.idProducte}}">{{i.producte}}</option>
+                                        {%endifequal%}
+                                    {%endfor%}
+                                    <option value="-1"></option>
+                                   {%for i in producteTotsSimpli%}
+                                             <option value={{i.idProducte}}>{{i.producte}}</option>
+                                   {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat4: </label> <input type="text"
+                        class="form-control" name="quantitat4" value="{{simplificadaSelect.quantitat4}}">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Producte5:</label>
+                        <select name="idProducte5" class="selectpicker show-menu-arrow" 
+                        data-style="form-control" 
+                        data-live-search="true"
+                        title="Producte5"
+                        data-width="auto"
+                        >
+                                    {%for i in producteTotsSimpli%}
+                                        {%ifequal i.idProducte simplificadaSelect.idProducte5%}
+                                            <option value="{{i.idProducte}}">{{i.producte}}</option>
+                                        {%endifequal%}
+                                    {%endfor%}
+                                    <option value="-1"></option>
+                                   {%for i in producteTotsSimpli%}
+                                             <option value={{i.idProducte}}>{{i.producte}}</option>
+                                   {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat5: </label> <input type="text"
+                        class="form-control" name="quantitat5" value="{{simplificadaSelect.quantitat5}}">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Producte6:</label>
+                        <select name="idProducte6" class="selectpicker show-menu-arrow" 
+                        data-style="form-control" 
+                        data-live-search="true"
+                        title="Producte6"
+                        data-width="auto"
+                        >
+                                    {%for i in producteTotsSimpli%}
+                                        {%ifequal i.idProducte simplificadaSelect.idProducte6%}
+                                            <option value="{{i.idProducte}}">{{i.producte}}</option>
+                                        {%endifequal%}
+                                    {%endfor%}
+                                    <option value="-1"></option>
+                                   {%for i in producteTotsSimpli%}
+                                             <option value={{i.idProducte}}>{{i.producte}}</option>
+                                   {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantitat6: </label> <input type="text"
+                        class="form-control" name="quantitat6" value="{{simplificadaSelect.quantitat6}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Forma Pagament:</label> 
+                        <select name="idFormaPagament" class="form-control">
+                            {%for i in formaPagamentTots%}
+                                  {%ifequal i.idFormaPagament simplificadaSelect.idFormaPagament%}
+                                       <option value="{{i.idFormaPagament}}">{{i.formaPagament}}</option>
+                                  {%endifequal%}
+                             {%endfor%}
+                            {%for i in formaPagamentTots%}
+                            <option value={{i.idFormaPagament}}>{{i.formaPagament}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+					
+		
+									
+					<input type="text" name="idSimplificada" value="{{simplificadaSelect.idSimplificada}}" style="visibility: hidden" />
+						
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+						</div>
+					
+				</form>
+                <br>
+                <div>
+                    <form action="/ImpSimplificada" method="get">
+                        <button type="submit" class="btn btn-lg btn-primary" >Imprimir Simplificada</button>
+                        <input type="text" name="idSimplificada" value="{{simplificadaSelect.idSimplificada}}" style="visibility: hidden" />
+                    </form>
+                    </div>
+                    <br>
+                    <div>
+                        <form action="/SimplificadaTots" method="get">
+                            <button type="submit" class="btn btn-lg btn-primary" >Tornar a tabla</button>
+                            </form>
+                        </div>
+                    
+            {%endifequal%}
+        {%endifequal%}
+
+{% include "footer.html" %}

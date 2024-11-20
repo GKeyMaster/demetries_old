@@ -1,0 +1,110 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idLiniaComanda -1%}
+		    <h2>Crear Linia Comanda Nova</h2>	
+			<form action="/LiniaComandaCrea" method="post">
+			<div class="form-group">
+									<label>Producte:</label> 
+									<select name="idProducte" class="form-control">
+			                            <option></option>
+										{%for i in producteTots%}
+										<option value={{i.idProducte}}>{{i.producte}} public:{{i.preuP}} distri:{{i.preuD}} {{i.unitat}}</option>
+										{%endfor%}
+									</select>
+								</div>
+
+
+			<div class="form-group">
+				<label>Preu Unitari: </label> <input type="text"
+				class="form-control" name="preuUnit">
+			</div>
+			<div class="form-group">
+				<label>Quantitat: </label> <input type="text"
+				class="form-control" name="quantitat">
+			</div>
+			
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			<input type="text" name="idComanda" value="{{idComanda}}" style="visibility: hidden" />
+			</form>
+
+			</div>
+			
+		{%else%}
+		    <h2>Edita Linia Comanda</h2>	
+				<form action="/LiniaComandaEdita" method="get">
+
+					<div class="form-group">
+											<label>Producte:</label> 
+											<select name="idProducte" class="form-control">
+					                             {%for i in producteTots%}
+					                                  {%ifequal i.idProducte liniaComandaSelect.idProducte%}
+					                                       <option value={{i.idProducte}}>{{i.producte}} public:{{i.preuP}} distri:{{i.preuD}} {{i.unitat}}</option>
+					                                  {%endifequal%}
+					                             {%endfor%}
+												{%for i in clientTots%}
+												<option value={{i.idProducte}}>{{i.producte}} public:{{i.preuP}} distri:{{i.preuD}} {{i.unitat}}</option>
+												{%endfor%}
+											</select>
+										</div>	
+					<div class="form-group">
+				<label>Preu Unitari: </label> <input type="text"
+				class="form-control" name="preuUnit" value="{{liniaComandaSelect.preuUnit}}">
+			</div>
+					<div class="form-group">
+				<label>Quantitat: </label> <input type="text"
+				class="form-control" name="quantitat" value="{{liniaComandaSelect.quantitat}}">
+			</div>
+			<div class="form-group">
+									<label>Lot:</label> 
+									<select name="idLot" class="form-control">
+			                            {%for i in lotTots%}
+                                  			{%ifequal i.idLot liniaComandaSelect.idLot%}
+                                       			<option value="{{i.idLot}}">{{i.codiLot}} // {{i.descripcio}} // {{i.dataLot}}</option>
+                                  			{%endifequal%}
+                             			{%endfor%}
+                             			<option value=-1>SENSE LOT</option>
+										{%for i in lotTots%}
+										<option value="{{i.idLot}}">{{i.codiLot}} // {{i.descripcio}} // {{i.dataLot}}</option>
+										{%endfor%}
+									</select>
+			</div>
+
+					
+								
+						
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+						</div>
+						<input type="text" name="idComanda" value="{{liniaComandaSelect.idComanda}}" style="visibility: hidden" />
+						<input type="text" name="idLiniaComanda" value="{{liniaComandaSelect.idLiniaComanda}}" style="visibility: hidden" />
+					
+				</form>
+							<br>
+			
+				<br>
+				<div>
+				<form action="/ComandaSelect" method="get">
+				    
+					<button type="submit" class="btn btn-lg btn-primary" >Comanda</button>
+					<input type="text" name="idComanda" value="{{liniaComandaSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				<br><br><br>
+				<form action="/LiniaComandaElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Linia Comanda</button>
+					<input type="text" name="idLiniaComanda" value="{{liniaComandaSelect.idLiniaComanda}}" style="visibility: hidden" />
+					<input type="text" name="idComanda" value="{{liniaComandaSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

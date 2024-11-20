@@ -1,0 +1,116 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idFinca -2%}
+		    <h2>Crear finca nou</h2>	
+			<form action="/FincaCrea" method="post">
+
+			<div class="form-group">
+				<label>Codi Finca: </label> <input type="text"
+				class="form-control" name="codiFinca">
+			</div>
+			<div class="form-group">
+				<label>Finca: </label> <input type="text"
+				class="form-control" name="finca">
+			</div>
+			<div class="form-group">
+				<label>Superficie (m2): </label> <input type="text"
+				class="form-control" name="superficie">
+			</div>
+			<div class="form-group">
+				<label>refCatastral: </label> <input type="text"
+				class="form-control" name="refCatastral">
+			</div>	
+	
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			</form>
+
+			</div>
+			
+		{%else%}
+			{%ifequal idFinca -1%}
+			<form action="/FincaNou" method="get">
+				<button type="submit" class="btn btn-lg btn-primary" >Crea Finca</button>
+			</form>
+			<br>
+			
+			<h2>Finques
+			</h2>
+			<div class="container">
+
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Codi</th>
+						<th>Finca</th>
+						<th>m2</th>
+						<th>refCatastral</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{%for i in fincaTots%}
+					<tr>
+						<td>{{i.codiFinca}}</td>
+						<td>{{i.finca}}</td>
+						<td>{{i.superficie}}</td>
+						<td>{{i.refCatastral}}</td>
+						<td><a class="btn btn-lg btn-primary btn-xs" role="button"
+									href="/FincaSelect?idFinca={{i.idFinca}}"> <span
+										class="glyphicon glyphicon-pencil"></span></a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+		    <h2>Edita Finca</h2>	
+				<form action="/FincaEdita" method="get">
+				
+						<div class="form-group">
+							<label>Codi Finca: </label> <input type="text"
+							class="form-control" name="codiFinca" value="{{fincaSelect.codiFinca}}">
+						</div>
+						<div class="form-group">
+							<label>Finca: </label> <input type="text"
+							class="form-control" name="finca" value="{{fincaSelect.finca}}">
+						</div>
+						<div class="form-group">
+							<label>Superficie (m2): </label> <input type="text"
+							class="form-control" name="superficie" value="{{fincaSelect.superficie}}">
+						</div>
+						<div class="form-group">
+							<label>refCatastral: </label> <input type="text"
+							class="form-control" name="refCatastral" value="{{fincaSelect.refCatastral}}">
+						</div>							
+								
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+								<input type="text" name="idFinca" value="{{fincaSelect.idFinca}}" style="visibility: hidden" />
+						</div>
+					
+				</form>
+				<br>
+				<div>
+				<form action="/FincaTots" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Finques</button>
+				</form>
+				<br><br><br>
+				<form action="/FincaElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Finca</button>
+					<input type="text" name="idFinca" value="{{fincaSelect.idFinca}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			{%endifequal%}
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

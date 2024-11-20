@@ -1,0 +1,137 @@
+body {
+	margin: 5px; 
+	font-family: Helvetica, Arial, sans-serif;
+    background-color: #FFFFFF;
+    color: #000000
+}
+
+
+
+table th {
+	background:#000000;
+	font-size:small;
+    color: #FFFFFF;
+	text-align:left
+}
+
+table tr {	
+	background-color: #BDBDBD;
+	font-size:small;
+    color: #000000
+}
+
+.fondocolor1 {
+	background-color: #3B0B0B;
+}
+
+
+form td {
+	font-size: smaller;
+    color: #FFFFFF
+}
+
+.gris {
+	color: #808080;
+}
+
+.negre {
+	color: #000000;
+}
+
+.blanc {
+	color: #FFFFFF;
+}
+
+.linkN {
+	font-size: small;
+	color: #000000;
+}
+
+
+.linkB {
+	font-size: small;
+	color: #FFFFFF;
+}
+
+.titol {
+	font-size: x-large;
+	text-align:right;
+	color: #000000;
+}
+
+.linkD {
+	font-size: small;
+	text-align:right;
+	color: #FB8C3C;
+}
+
+#fondoTarea {
+    background-color: #240B3B;
+}
+#fondoTreball {
+    background-color: #3B0B0B;	
+}
+#fondoHistoria {
+    background-color: #0B3B0B;	
+}
+#fondoAnterior {
+    background-color: #610B0B;	
+}
+#fondoHui {
+    background-color: #393B0B;	
+}
+#fondoDema {
+    background-color: #0A122A;	
+}
+#fondoFutur {
+    background-color: #0B3B0B;	
+}
+#fondoBlau {
+    background-color: #0066CC;	
+}
+#fondoVerd {
+    background-color: #008000;	
+}
+#fondoTurquesa {
+    background-color: #008080;	
+}
+#fondoMarro {
+    background-color: #800000;	
+}
+#fondoOliva {
+    background-color: #808000;	
+}
+#fondoGris {
+    background-color: #808080;	
+}
+.Estilo2 {font-size: 8mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold;}
+.Estilo3 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; }
+.Estilo4 {font-size: 4mm; font-family: Arial, Helvetica, sans-serif;}
+.Estilo5 {font-size: 3mm; font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;}
+.Estilo6 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+
+#chart_wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 1200px;
+}
+
+/* The navigation bar */
+.navbarDies {
+    overflow: hidden;
+    background-color: #ffffff;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 60; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1;
+}
+
+/* Links inside the navbar */
+.navbarDies a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+}

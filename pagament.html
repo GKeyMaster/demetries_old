@@ -1,0 +1,106 @@
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+	<!-- Jumbotron -->
+
+
+		{%ifequal idPagament -1%}
+		    <h2>Crear Pagament Nou</h2>	
+			<form action="/PagamentCrea" method="post">
+
+			<div class="form-group">
+					<label>Data: </label> <input type="text"
+					class="form-control" name="dataPagament" id="datepicker1" >
+			</div>
+			<div class="form-group">
+				<label>Quantitat: </label> <input type="text"
+				class="form-control" name="quantitat">
+			</div>
+			<div class="form-group">
+											<label>Forma Pagament:</label> 
+											<select name="idFormaPagament" class="form-control">
+												{%for i in formaPagamentTots%}
+													<option value={{i.idFormaPagament}}>{{i.formaPagament}}</option>
+												{%endfor%}
+											</select>
+										</div>
+			<div class="form-group">
+				<label>Descripcio: </label> <input type="text"
+				class="form-control" name="descripcio">
+			</div>
+			
+			<button type="submit" class="btn btn-lg btn-primary" >OK</button>
+			<input type="text" name="idComanda" value="{{idComanda}}" style="visibility: hidden" />
+			</form>
+
+			</div>
+			
+		{%else%}
+		    <h2>Edita Pagament</h2>	
+				<form action="/PagamentEdita" method="get">
+					<div class="form-group">
+								<label>Data: </label> <input type="text"
+								class="form-control" name="dataPagament" id="datepicker2" value="{{pagamentSelect.dataPagament}}">
+						</div>
+					<div class="form-group">
+
+					<div class="form-group">
+				<label>Quantitat: </label> <input type="text"
+				class="form-control" name="quantitat" value="{{pagamentSelect.quantitat}}">
+			</div>
+			
+			<div class="form-group">
+											<label>Forma Pagament:</label> 
+											<select name="idFormaPagament" class="form-control">
+											{%for i in formaPagamentTots%}
+				                                  {%ifequal i.idFormaPagament pagamentSelect.idFormaPagament%}
+				                                       <option value={{i.idFormaPagament}}>{{i.formaPagament}}</option>
+				                                  {%endifequal%}
+                             				{%endfor%}
+												{%for i in formaPagamentTots%}
+													<option value={{i.idFormaPagament}}>{{i.formaPagament}}</option>
+												{%endfor%}
+											</select>
+										</div>
+			
+			
+			<div class="form-group">
+				<label>Descripció: </label> <input type="text"
+				class="form-control" name="descripcio" value="{{pagamentSelect.descripcio}}">
+			</div>
+			
+			
+			
+						
+						<div>		
+								<button type="submit" class="btn btn-lg btn-primary">OK</button>
+						</div>
+						<input type="text" name="idComanda" value="{{pagamentSelect.idComanda}}" style="visibility: hidden" />
+						<input type="text" name="idPagament" value="{{pagamentSelect.idPagament}}" style="visibility: hidden" />
+					
+				</form>
+							<br>
+			
+				<br>
+				<div>
+				<form action="/ComandaSelect" method="get">
+				    
+					<button type="submit" class="btn btn-lg btn-primary" >Comanda</button>
+					<input type="text" name="idComanda" value="{{pagamentSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				<br><br><br>
+				<form action="/PagamentElimina" method="get">
+					<button type="submit" class="btn btn-lg btn-primary" >Elimina Pagament</button>
+					<input type="text" name="idPagament" value="{{pagamentSelect.idPagament}}" style="visibility: hidden" />
+					<input type="text" name="idComanda" value="{{pagamentSelect.idComanda}}" style="visibility: hidden" />
+				</form>
+				</div>
+			
+			
+			</div>
+			
+
+		{%endifequal%}
+
+
+{% include "footer.html" %}

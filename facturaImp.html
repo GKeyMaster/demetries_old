@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+            <head> <!-- titol en pestana -->  
+               <title>facturaImp</title>
+               <style type="text/css">
+<!--
+.Estilo2 {
+	font-size: 10mm;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.Estilo3 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; }
+.Estilo4 {
+	font-size: 4mm;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Estilo5 {font-size: 3mm; font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;}
+.Estilo6 {font-size: 5mm; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+-->
+               </style>
+        </head>
+        <head>
+		<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+        </head>
+        <body>
+            {%ifequal esFactura 1%} 
+              <a class="Estilo2" style="position: absolute; top: 23px; left: 425px"> FACTURA </a>
+              {%else%} 
+              <a class="Estilo2" style="position: absolute; top: 23px; left: 425px"> ALBARAN </a>
+              {%endifequal%} 
+              <a class="Estilo3" style="position: absolute; top: 330px; left: 30px"> DAMALIA FILLES SL</a>
+			  <a class="Estilo3" style="position: absolute; top: 355px; left: 30px"> B72902273 </a>
+				  <a class="Estilo3" style="position: absolute; top: 380px; left: 30px"> Benassal a Villafranca Km 4,15</a>
+		           <a class="Estilo3" style="position: absolute; top: 405px; left: 30px"> 12160 Benassal, Castell&oacute; </a>
+		           <a class="Estilo3" style="position: absolute; top: 430px; left: 30px"> tel: 630 51 78 72 </a>
+					   <a class="Estilo3" style="position: absolute; top: 455px; left: 30px"> info@demetriotrufadebenassal.es </a>
+		               <a class="Estilo3" style="position: absolute; top: 480px; left: 30px"> www.demetriotrufadebenassal.es </a></p>
+                      
+              
+              
+			 
+            <div>
+			   <div align="left">
+			     <table style="position: absolute; top: 330px; left: 425px; width: 365px;">
+			       <tr>
+			         <td width="150" align="left" class="Estilo6">Cliente:</td>
+				   </tr>
+			       <p><tr>
+			         {%for client in clientTots%}
+			         {%ifequal client.idClient comandaSelect.idClient%}
+			         <td width="357" class="Estilo3"><div align="left">{{client.nomClient}}</div></td>
+                          {%endifequal%}
+                     {%endfor%}				   </tr></p>
+			       <p><tr>
+			         {%for client in clientTots%}
+			         {%ifequal client.idClient comandaSelect.idClient%}
+			         <td width="357" class="Estilo3"><div align="left">{{client.cifClient}}</div></td>
+                          {%endifequal%}
+                     {%endfor%}				   </tr></p>
+			       <p><tr>
+			         {%for client in clientTots%}
+			         {%ifequal client.idClient comandaSelect.idClient%}
+			         <td width="357" class="Estilo3"><div align="left">{{client.direccioF}}</div></td>
+                          {%endifequal%}
+                     {%endfor%}				   </tr></p>
+			       		 				 				 
+	             </table>
+		      </div>
+		</div>
+            {%ifequal esFactura 1%}
+		<div>
+			   <table style="position: absolute; top: 150px; left: 425px; width: 250;">
+			     <tr>
+			    	<td width="100" align="left" class="Estilo6"> Factura: </td>
+					<td width="150" align="left" class="Estilo3"> {{comandaSelect.numFactura}}  </td>
+				 </tr>
+				 <tr>
+			    	<td width="100" align="left" class="Estilo6"> Fecha: </td>
+					<td width="150" align="left" class="Estilo3"> {{comandaSelect.dataFactura}} </td>
+				 </tr>
+		      </table>
+			   <div align="left"></div>
+		</div>
+			{%else%}
+		<div>
+			   <table style="position: absolute; top: 150px; left: 425px; width: 250;">
+			     <tr>
+			    	<td width="100" align="left" class="Estilo6"> Albar&aacute;n: </td>
+					<td width="150" align="left" class="Estilo3"> {{comandaSelect.numComanda}} </td>
+				 </tr>
+				 <tr>
+			    	<td width="100" align="left" class="Estilo6"> Fecha: </td>
+					<td width="150" align="left" class="Estilo3"> {{comandaSelect.dataComanda}} </td>
+				 </tr>
+		      </table>
+			   <div align="left"></div>
+		</div>			
+            <div align="left">{%endifequal%}
+			
+		    </div>
+            {%if comandaSelect.descripcio%}
+            <div align="left"><a class="Estilo6" style="position: absolute; top: 510px; left: 30px" width="200" align="right"> {{comandaSelect.descripcio}} </a> </div>
+		    {%endif%}
+            <div>
+              <table style="position: absolute; top: 540px; left: 30px; width: 20cm; background-color: #C0C0C0; border-style:solid;border-color:#C0C0C0">
+		         <thead>
+					<tr>
+						<th class="Estilo4" align="left">producto</th>
+						<th class="Estilo4" align="left">-</th>
+						<th class="Estilo4" align="right">&euro;/ud</th>
+						<th class="Estilo4" align="right">ud</th>
+						<th class="Estilo4" align="right">cant</th>
+						<th class="Estilo4" align="right">&euro;</th>
+						<th class="Estilo4" align="right">%iva</th>
+						<!--<th class="Estilo4" align="right">iva</th>-->
+						<th class="Estilo4" align="right">total</th>
+					</tr>
+				</thead>
+				<tbody>
+		           {%for i in liniaComandaTots%}  
+                        <tr>
+                             <td width="400" class="Estilo4">{{i.producte}}</td>
+								{%ifequal i.idLot -1%}
+								<td>-</td>
+								{%else%}
+									{%for j in lotTots%}
+		                                  			{%ifequal i.idLot j.idLot%}
+		                                  				<td>{{j.codiLot}}</td>
+		                                  			{%endifequal%}
+		                            {%endfor%}
+								{%endifequal%}
+							 <td width="80" align="right" class="Estilo4">{{i.preuUnitT}}</td>			 
+							 <td width="80" align="right" class="Estilo4">{{i.unitat}}</td>
+							 <td width="80" align="right" class="Estilo4">{{i.quantitatT}}</td>
+							 <td width="80" align="right" class="Estilo4">{{i.preuT}}</td>
+							 {%ifequal clientSelect.comunitari 0%}
+							 <td width="80" align="right" class="Estilo4">{{i.percent}}</td>
+							 <!--<td width="80" align="right" class="Estilo4">{{i.ivaT}}</td>  -->
+							 <td width="80" align="right" class="Estilo4">{{i.preuTotT}}</td>
+							 {%else%}
+							 <td width="80" align="right" class="Estilo4">--</td>
+							 <!--<td width="80" align="right" class="Estilo4">--</td> -->
+							 <td width="80" align="right" class="Estilo4">{{i.preuT}}</td>
+							 {%endifequal%}
+							 
+							 
+                        </tr>
+                   {%endfor%}
+                 </tbody>
+              </table>
+        </div>
+         
+              
+			<div>
+			   <table style="position: absolute; top: 972px; left: 525px; width: 250;">			 
+				 <tr>				 	
+			    	<td width="150" align="right" class="Estilo6"> total: </td>
+			    	<td width="100" align="right" class="Estilo6"> {{totalComanda.totalSenseIva}}&euro; </td>					
+				 </tr>
+				 {%ifequal clientSelect.comunitari 0%}
+				 <tr>
+			    	<td width="150" align="right" class="Estilo6"> total iva: </td>
+			    	<td width="100" align="right" class="Estilo6"> {{totalComanda.ivaTotComT}}&euro; </td>			
+				 </tr>
+				 {%else%}
+				 <tr>
+			    	<td width="150" align="right" class="Estilo6"> no sujeto a iva: </td>
+			    	<td width="100" align="right" class="Estilo6"> 0&euro; </td>			
+				 </tr>
+				 {%endifequal%}
+				 <tr>
+			    	<td width="150" align="right" class="Estilo6"> total factura: </td>
+			    	{%ifequal clientSelect.comunitari 0%}
+			    	<td width="100" align="right" class="Estilo6"> {{totalComanda.totalFactura}}&euro; </td>
+			    	{%else%}
+			    	<td width="100" align="right" class="Estilo6"> {{totalComanda.totalSenseIva}}&euro; </td>	
+			    	{%endifequal%}
+			    				
+				 </tr>
+		      </table>
+			</div>
+			
+			<div>
+			   <table style="position: absolute; top: 1050px; left: 26px; width: 500px;">
+							     <tr>
+                                      <td width="150" class="Estilo4"> Banco Cajamar:</td>
+					                  <td width="450" class="Estilo4"> ES13 3058 7396 0227 2060 3506 </td>
+							     </tr>
+	          </table>
+			</div>
+
+			<div>
+			  <div align="left"><a class="Estilo3 Estilo5" style="position: absolute; top: 1000px; left: 27px" width="200" align="right"> En cumplimiento del RGPD, puede ejercer sus derechos en info@trufademetriodebenassal </a> </div>
+			</div>	
+			{%ifequal esFactura 0%}
+			<div>
+			  <div align="left"><a class="Estilo3 Estilo5" style="position: absolute; top: 949px; left: 28px" width="200" align="right"> SIN VALOR CONTABLE </a> </div>
+			</div>	
+			{%endifequal%}
+			<img src="img/Logo.jpg" style="position: absolute; top: 10px; left: 30px" alt="" width="350" />
+        </body>
+</html>
